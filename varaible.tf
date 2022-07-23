@@ -15,11 +15,11 @@ variable "AMIS" {
 
 variable "PATH_TO_PUBLIC_KEY" {
   description = "Public key path"
-  default = "~/.ssh/id_rsa.pub"
+  default = "sshid/id_rsa.pub"
 }
 
 variable "PATH_TO_PRIVATE_KEY" {
-  default = "~/.ssh/id_rsa"
+  default = "sshid/id_rsa"
 }
 
 variable "INSTANCE_USERNAME" {
