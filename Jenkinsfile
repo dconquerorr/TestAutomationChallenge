@@ -5,6 +5,9 @@ pipeline {
         {
             steps 
             {
+                sh 'export AWS_ACCESS_KEY_ID="AKIA4I3EIGZGITZ5ZK6U"'
+                sh 'export AWS_DEFAULT_REGION="us-west-2"'
+                sh 'export AWS_SECRET_ACCESS_KEY="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"'
                 sh 'terraform init'		   
             }
             post
