@@ -1,5 +1,5 @@
 
-resource "aws_key_pair" "APKA4I3EIGZGNOE7NSIZ" {
+resource "aws_key_pair" "assignment" {
     key_name = "assignment"
     public_key = "${file(var.PATH_TO_PUBLIC_KEY)}"
 }
@@ -54,7 +54,7 @@ resource "aws_instance" "MyFirstInstnace" {
   ami           = lookup(var.AMIS, var.AWS_REGION)
   instance_type = "t2.micro"
   availability_zone = "us-west-2a"
-  key_name      = aws_key_pair.APKA4I3EIGZGNOE7NSIZ.key_name
+  key_name      = aws_key_pair.assignment.key_name
 
   vpc_security_group_ids = [
     aws_security_group.allow_elk.id
