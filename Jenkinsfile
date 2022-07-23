@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
     stages {
@@ -6,7 +5,8 @@ pipeline {
         {
             steps 
             {
-               terraform init		   
+                sh 'cd ~/elk_deploy'
+                sh 'terraform init'		   
             }
             post
             {
@@ -21,7 +21,7 @@ pipeline {
         {
             steps 
             {
-               terraform plan		   
+               sh 'terraform plan'		   
             }
             post
             {
@@ -36,7 +36,7 @@ pipeline {
           {
               steps 
               {
-                 terraform apply -auto-approve		   
+                 sh 'terraform apply -auto-approve'		   
               }
               post
               {
