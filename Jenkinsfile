@@ -31,7 +31,7 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy Infra') 
+        stage ('Deploy EC2 instance and ELK Stack') 
           {
               steps 
               {
