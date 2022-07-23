@@ -5,7 +5,6 @@ pipeline {
         {
             steps 
             {
-                sh 'cd ~/elk_deploy'
                 sh 'terraform init'		   
             }
             post
