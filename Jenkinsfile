@@ -6,11 +6,12 @@ pipeline {
             steps 
             {                
                 sh '''#!/bin/bash                  
-                  export AWS_ACCESS_KEY_ID=${env.AWS_ACCESS_KEY}
+                  export AWS_ACCESS_KEY_ID={env.AWS_ACCESS_KEY}
                   '''
                 sh '''#!/bin/bash                  
                   export AWS_SECRET_ACCESS_KEY={env.AWS_SECRET_KEY}
-                  '''                
+                  '''
+                sh 'printenv'
                 sh 'terraform init'		   
             }
             post
