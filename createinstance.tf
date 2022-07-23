@@ -105,10 +105,8 @@ resource "aws_instance" "MyFirstInstnace" {
 resource "aws_eip" "ip" {
   instance = aws_instance.MyFirstInstnace.id
 }
-resource "time_sleep" "wait_for_eip" {
-  depends_on = [aws_eip.ip]
-  create_duration = "5s"
-}
+
 output "public_ip" {
+    depends_on = [aws_eip.ip]
   value = aws_eip.ip.public_ip
 }
