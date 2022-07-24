@@ -110,3 +110,7 @@ output "public_ip" {
     depends_on = [aws_eip.ip]
   value = aws_instance.MyFirstInstnace
 }
+
+output "instance_id" {
+  value = aws_instance.MyFirstInstnace.id
+}
