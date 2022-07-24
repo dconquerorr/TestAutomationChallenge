@@ -57,7 +57,7 @@ pipeline {
                   success
                   {
                       echo 'infrastructure deployed successfully'
-                      echo {env.INSTANCE_ID}
+                      echo '{env.INSTANCE_ID}'
 
                   }
               }
