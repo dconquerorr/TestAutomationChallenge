@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    def public_ip
     stages {
        stage ('Infrastructure Initiation') 
         {
@@ -45,7 +44,7 @@ pipeline {
               {
                  sh 'terraform apply -auto-approve'
                  sh 'terraform output public_ip'
-                 public_ip = sh(returnStdout: true, script: "terraform output public_ip").trim()
+                 def public_ip = sh(returnStdout: true, script: "terraform output public_ip").trim()
               }
               post
               {
