@@ -68,7 +68,7 @@ pipeline {
               steps 
               {
                   sh '''#!/bin/bash                  
-                  echo -e "{env.AWS_ACCESS_GLOBAL}\n{env.AWS_SECRET_GLOBAL}\n\ntext" | aws configure
+                  echo -e "{env.AWS_ACCESS_GLOBAL}\n{env.AWS_SECRET_GLOBAL}\n{env.AWS_DEFAULT_REGION}\ntext" | aws configure
                   '''                 
                   sh '''#!/bin/bash                  
                   aws ec2 describe-instance-status
