@@ -38,7 +38,7 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy EC2 instance and ELK Stack') 
+        stage ('Create AWS EC2 instance and deploy ELK Stack') 
           {
               steps 
               {
