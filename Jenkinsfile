@@ -71,8 +71,7 @@ pipeline {
                   echo -e "{env.AWS_ACCESS_GLOBAL}\n{env.AWS_SECRET_GLOBAL}\n{env.AWS_REGION}\ntext" | aws configure
                   '''                 
                   sh '''#!/bin/bash                  
-                  aws ec2 describe-instance-status \
-                  --instance-ids i-0c16ba529c96259d3
+                  aws ec2 describe-instance-status
                   '''  
                                   
               }
