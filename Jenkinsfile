@@ -57,6 +57,21 @@ pipeline {
                   }
               }
           }
+                stage ('Destroy infra') 
+          {
+              steps 
+              {
+                 sh 'yes | terraform destroy'
+              }
+              post
+              {
+                  success
+                  {
+                      echo 'infrastructure deployed successfully'
+
+                  }
+              }
+          }
           
     }
 }
