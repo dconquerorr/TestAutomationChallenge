@@ -72,7 +72,7 @@ pipeline {
                   '''                 
                   sh '''#!/bin/bash                  
                   aws ec2 describe-instance-status \
-                  --instance-ids ${terraform.instance_id}
+                  --instance-ids i-0c16ba529c96259d3
                   '''  
                                   
               }
