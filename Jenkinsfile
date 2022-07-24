@@ -64,7 +64,7 @@ pipeline {
           {
               steps 
               {
-                 sh 'echo text \n us-west-2 \n {env.AWS_SECRET_KEY} \n {env.AWS_ACCESS_KEY} | aws configure'
+                 sh 'echo text\nus-west-2\n{env.AWS_SECRET_KEY}\n{env.AWS_ACCESS_KEY}| aws configure'
                  sh 'aws ec2 describe-instance-status --instance-ids {instance_id}'
               }
               post
