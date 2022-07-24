@@ -68,7 +68,7 @@ pipeline {
               steps 
               {
                   sh '''#!/bin/bash                  
-                  echo -e "{env.AWS_ACCESS_GLOBAL}\n{env.AWS_SECRET_GLOBAL}\n{env.AWS_DEFAULT_REGION}\ntext" | aws configure --profile produser
+                  echo -e "{env.AWS_ACCESS_KEY}\n{env.AWS_SECRET_KEY}\n{env.AWS_DEFAULT_REGION}\ntext" | aws configure --profile produser
                   '''                 
                   sh '''#!/bin/bash 
                   aws s3 ls --profile produser
