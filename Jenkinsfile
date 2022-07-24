@@ -1,6 +1,7 @@
 pipeline {
     agent any
     stages {
+       def public_ip
        stage ('Infrastructure Initiation') 
         {
             steps 
@@ -42,7 +43,9 @@ pipeline {
           {
               steps 
               {
-                 sh 'terraform apply -auto-approve'		   
+                 sh 'terraform apply -auto-approve'
+                 sh 'terraform output public_ip'
+                 public_ip = sh(returnStdout: true, script: "terraform output public_ip").trim()
               }
               post
               {
@@ -53,20 +56,6 @@ pipeline {
                   }
               }
           }
-          stage ('Destroy infra') 
-          {
-              steps 
-              {
-                 sh 'terraform destroy'		   
-              }
-              post
-              {
-                  success
-                  {
-                      echo 'infrastructure destroyed successfully'
-
-                  }
-              }
-          }
+          
     }
 }
