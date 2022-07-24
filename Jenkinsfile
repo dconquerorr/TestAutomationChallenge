@@ -48,8 +48,8 @@ pipeline {
                  sh 'terraform output public_ip'
                  sh 'terraform output instance_id'
                   script{
-                    public_ip = sh(returnStdout: true, script: "terraform output public_ip").trim()
-                    instance_id = sh 'terraform output instance_id'
+                    public_ip = sh(script: "terraform output public_ip",returnStdout: true ).trim()
+                    instance_id = sh(script: "terraform output instance_id",returnStdout: true).trim()
                   }
               }
               post
@@ -68,7 +68,7 @@ pipeline {
               steps 
               {
                   sh '''#!/bin/bash                  
-                  echo -e "text\n{env.AWS_REGION}\n{env.AWS_SECRET_GLOBAL}\n{env.AWS_ACCESS_GLOBAL}" | aws configure
+                  echo -e "{env.AWS_ACCESS_GLOBAL}\n{env.AWS_SECRET_GLOBAL}\n{env.AWS_REGION}\ntext" | aws configure
                   '''                 
                   sh '''#!/bin/bash                  
                   aws ec2 describe-instance-status \
@@ -84,9 +84,7 @@ pipeline {
 
                   }
               }
-          }
-        
-        
+          }        
         
                 stage ('Destroy infra') 
           {
