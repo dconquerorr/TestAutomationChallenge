@@ -57,7 +57,7 @@ pipeline {
                   success
                   {
                       echo 'infrastructure deployed successfully'
-                      echo '${instance_id}'
+                      echo '${terraform.instance_id}'
 
                   }
               }
@@ -72,7 +72,7 @@ pipeline {
                   '''                 
                   sh '''#!/bin/bash                  
                   aws ec2 describe-instance-status \
-                  --instance-ids ${instance_id}
+                  --instance-ids ${terraform.instance_id}
                   '''  
                                   
               }
