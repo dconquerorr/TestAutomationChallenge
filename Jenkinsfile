@@ -52,6 +52,7 @@ pipeline {
 
                   }
               }
+          }
           stage ('Destroy infra') 
           {
               steps 
