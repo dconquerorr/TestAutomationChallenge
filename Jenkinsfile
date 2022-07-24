@@ -48,8 +48,8 @@ pipeline {
                  sh 'terraform output public_ip'
                  sh 'terraform output instance_id'
                   script{
-                    public_ip = sh(script: "terraform output public_ip",returnStdout: true ).trim()
-                    instance_id = sh(script: "terraform output instance_id",returnStdout: true).trim()
+                    public_ip = sh(script: "echo | terraform output public_ip",returnStdout: true ).trim()
+                    instance_id = sh(script: "echo | terraform output instance_id",returnStdout: true).trim()
                   }
               }
               post
