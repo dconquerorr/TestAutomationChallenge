@@ -45,8 +45,8 @@ pipeline {
               steps 
               {
                  sh 'terraform apply -auto-approve'
-                 sh 'terraform output public_ip'
-                 sh 'terraform output instance_id'
+                 sh 'export PUBLIC_IP=terraform output public_ip'
+                 sh 'export INSTANCE_ID=terraform output instance_id'
                   script{
                     public_ip = sh(script: "echo | terraform output public_ip",returnStdout: true ).trim()
                     instance_id = sh(script: "echo | terraform output instance_id",returnStdout: true).trim()
@@ -57,7 +57,7 @@ pipeline {
                   success
                   {
                       echo 'infrastructure deployed successfully'
-                      echo '${terraform.instance_id}'
+                      echo {env.INSTANCE_ID}
 
                   }
               }
@@ -68,7 +68,7 @@ pipeline {
               steps 
               {
                   sh '''#!/bin/bash                  
-                  echo -e "{env.AWS_ACCESS_KEY}\n{env.AWS_SECRET_KEY}\n{env.AWS_DEFAULT_REGION}\ntext" | aws configure --profile produser
+                  echo -e "{env.AWS_ACCESS_KEY}\n{env.AWS_SECRET_KEY}\n{env.AWS_DEFAULT_REGION}\ntext" | aws configure
                   '''                 
                   sh '''#!/bin/bash 
                   aws s3 ls --profile produser
