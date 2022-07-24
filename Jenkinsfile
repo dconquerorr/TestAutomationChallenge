@@ -44,7 +44,9 @@ pipeline {
               {
                  sh 'terraform apply -auto-approve'
                  sh 'terraform output public_ip'
-                 def public_ip = sh(returnStdout: true, script: "terraform output public_ip").trim()
+                  script{
+                    def public_ip = sh(returnStdout: true, script: "terraform output public_ip").trim()
+                  }
               }
               post
               {
