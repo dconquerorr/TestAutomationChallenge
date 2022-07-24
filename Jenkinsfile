@@ -13,7 +13,6 @@ pipeline {
                 sh '''#!/bin/bash                  
                   export AWS_SECRET_ACCESS_KEY={env.AWS_SECRET_KEY}
                   '''
-                sh 'printenv'
                 sh 'terraform init'		   
             }
             post
@@ -57,34 +56,12 @@ pipeline {
                   success
                   {
                       echo 'infrastructure deployed successfully'
-                      echo '{env.INSTANCE_ID}'
+                      sh 'echo ${instance_id}'
 
                   }
               }
           }
         
-                stage ('Test EC2 instance is up and running & Monitor') 
-          {
-              steps 
-              {
-                  sh '''#!/bin/bash                  
-                  echo -e "{env.AWS_ACCESS_KEY}\n{env.AWS_SECRET_KEY}\n{env.AWS_DEFAULT_REGION}\ntext" | aws configure
-                  '''                 
-                  sh '''#!/bin/bash 
-                  aws s3 ls --profile produser
-                  aws ec2 describe-instance-status
-                  '''  
-                                  
-              }
-              post
-              {
-                  success
-                  {
-                      echo 'infrastructure deployed successfully'
-
-                  }
-              }
-          }        
         
                 stage ('Destroy infra') 
           {
