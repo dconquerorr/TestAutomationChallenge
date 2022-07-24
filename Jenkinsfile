@@ -57,6 +57,7 @@ pipeline {
                   success
                   {
                       echo 'infrastructure deployed successfully'
+                      echo '{instance_id}'
 
                   }
               }
@@ -69,7 +70,11 @@ pipeline {
                   sh '''#!/bin/bash                  
                   echo -e "text\n{env.AWS_REGION}\n{env.AWS_SECRET_KEY}\n{env.AWS_ACCESS_KEY}" | aws configure
                   '''                 
-                  sh 'aws ec2 describe-instance-status --instance-ids {instance_id}'
+                  sh '''#!/bin/bash                  
+                  aws ec2 describe-instance-status \
+                  --instance-ids {env.instance_id}
+                  '''  
+                                  
               }
               post
               {
