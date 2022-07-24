@@ -46,7 +46,7 @@ pipeline {
                  sh 'terraform output public_ip'
                   script{
                     def public_ip = sh(returnStdout: true, script: "terraform output public_ip").trim()
-                    def instance_id = 
+                    def instance_id = sh(returnStdout: true, script: "terraform output instance_id").trim()
                   }
               }
               post
@@ -65,10 +65,7 @@ pipeline {
               {
                  sh 'sudo apt install awscli'
                  sh 'echo text | echo us-west-2 | echo {env.AWS_SECRET_KEY} | echo {env.AWS_ACCESS_KEY} | aws configure'
-                 sh 'aws ec2 describe-instance-status --instance-ids i-1234567890abcdef0'
-                  script{
-                    def public_ip = sh(returnStdout: true, script: "terraform output public_ip").trim()
-                  }
+                  sh 'aws ec2 describe-instance-status --instance-ids {instance_id}'
               }
               post
               {
