@@ -1,7 +1,7 @@
 pipeline {
     agent any
+    def public_ip
     stages {
-       def public_ip
        stage ('Infrastructure Initiation') 
         {
             steps 
