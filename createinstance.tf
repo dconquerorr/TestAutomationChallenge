@@ -52,7 +52,7 @@ resource "aws_security_group" "allow_elk" {
 #Create AWS Instance
 resource "aws_instance" "MyFirstInstnace" {
   ami           = lookup(var.AMIS, var.AWS_REGION)
-  instance_type = "t2.micro"
+  instance_type = "m4.large"
   availability_zone = "us-west-2a"
   key_name      = aws_key_pair.assignment.key_name
 
@@ -86,13 +86,13 @@ resource "aws_instance" "MyFirstInstnace" {
       destination = "/tmp/installELK.sh"
   }
 
-  #provisioner "remote-exec" {
-  #  inline = [
-  #    "chmod +x    /tmp/installELK.sh",
-  #    "sudo sed -i -e 's/\r$//' /tmp/installELK.sh",  # Remove the spurious CR characters.
-  #    "sudo /tmp/installELK.sh",
-  #  ]
-  #}
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x    /tmp/installELK.sh",
+      "sudo sed -i -e 's/\r$//' /tmp/installELK.sh",  # Remove the spurious CR characters.
+      "sudo /tmp/installELK.sh",
+    ]
+  }
 
   connection {
     host        = coalesce(self.public_ip, self.private_ip)
