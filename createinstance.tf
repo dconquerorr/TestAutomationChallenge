@@ -52,7 +52,7 @@ resource "aws_security_group" "allow_elk" {
 #Create AWS Instance
 resource "aws_instance" "MyFirstInstnace" {
   ami           = lookup(var.AMIS, var.AWS_REGION)
-  instance_type = "m4.large"
+  instance_type = "t2.micro"
   availability_zone = "us-west-2a"
   key_name      = aws_key_pair.assignment.key_name
 
