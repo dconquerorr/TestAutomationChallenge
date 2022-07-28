@@ -67,7 +67,7 @@ pipeline {
           {
               steps 
               {
-                 sh 'echo No | terraform destroy'
+                 sh 'echo yes | terraform destroy'
               }
               post
               {
