@@ -67,7 +67,7 @@ pipeline {
           {
               steps 
               {
-                 echo 'infra destroyed'
+                 sh 'echo yes | terraform destroy'
               }
               post
               {
